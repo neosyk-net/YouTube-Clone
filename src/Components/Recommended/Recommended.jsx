@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Recommended.css";
 import thumbnail1 from "../../assets/thumbnail1.png";
-import { API_KEY } from "../../data";
+import { API_KEY, value_converter } from "../../data";
 
 const Recommended = () => {
   const [apiData, setApiData] = useState([]);
@@ -67,7 +67,7 @@ const Recommended = () => {
           <div className="vid-info">
             <h4>{item?.snippet?.title || "Video Title"}</h4>
             <p>{item?.snippet?.channelTitle || "Channel Name"}</p>
-            <p>{item?.statistics?.viewCount || 0} views</p>
+            <p>{ value_converter(item.statistics.viewCount)} views</p>
           </div>
         </div>
       ))}
