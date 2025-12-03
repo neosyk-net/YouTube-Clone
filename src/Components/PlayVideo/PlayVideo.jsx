@@ -44,7 +44,8 @@ const {videoId} = useParams();
 
   useEffect(() => {
     fetchVideoData();
-  }, [videoId]);
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     fetchOtherData();
@@ -52,7 +53,7 @@ const {videoId} = useParams();
 
   return (
     <div className="play-video">
-      {/* <video src={video1} controls autoPlay muted></video> */}
+
       <iframe
         src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
         frameborder="0"
