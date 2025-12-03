@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Recommended.css";
 import thumbnail1 from "../../assets/thumbnail1.png";
 import { API_KEY, value_converter } from "../../data";
+import { Link } from "react-router-dom";
 
 const Recommended = () => {
   const [apiData, setApiData] = useState([]);
@@ -24,13 +25,11 @@ const Recommended = () => {
 
       console.log("Recommended API response:", data);
 
-
       if (data.error) {
         setErrorMsg(data.error.message || "Unknown API error");
         setApiData([]);
         return;
       }
-
 
       setApiData(Array.isArray(data.items) ? data.items : []);
       setErrorMsg("");
@@ -47,8 +46,6 @@ const Recommended = () => {
 
   return (
     <div className="recommended">
-
-
       {/* API error message */}
       {errorMsg && (
         <p style={{ color: "red", marginBottom: "10px" }}>
@@ -59,15 +56,18 @@ const Recommended = () => {
       {/* Render videos */}
       {apiData.map((item, index) => (
         <div key={item.id || index} className="side-video-list">
-          <img
-            src={item?.snippet?.thumbnails?.medium?.url || thumbnail1}
-            alt={item?.snippet?.title || "Video thumbnail"}
-          />
+          <Link
+            to={`/video/${item.snippet.categoryId}/${item.id}`}
+            onClick={() => window.scrollTo(0, 0)}
+            className="small-thumbnail"
+          >
+            <img src={item.snippet.thumbnails.medium.url} alt="" />
+          </Link>
 
           <div className="vid-info">
             <h4>{item?.snippet?.title || "Video Title"}</h4>
             <p>{item?.snippet?.channelTitle || "Channel Name"}</p>
-            <p>{ value_converter(item.statistics.viewCount)} views</p>
+            <p>{value_converter(item.statistics.viewCount)} views</p>
           </div>
         </div>
       ))}
