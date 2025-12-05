@@ -45,7 +45,7 @@ const {videoId} = useParams();
   useEffect(() => {
     fetchVideoData();
     window.scrollTo(0, 0);
-  }, []);
+  }, [videoId]);
 
   useEffect(() => {
     fetchOtherData();

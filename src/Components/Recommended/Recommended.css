@@ -11,6 +11,7 @@
 }
 .side-video-list .small-thumbnail{
     flex-basis: 49%;
+    flex-shrink: 0;
 }
 .side-video-list .vid-info{
     flex-basis: 49%;
